@@ -6,7 +6,6 @@ import smtplib
 from datetime import datetime
 
 SEND_EMAIL = os.getenv("SEND_EMAIL")
-RECEIVE_EMAIL = os.getenv("RECEIVE_EMAIL")
 EMAIL_PW = os.getenv("EMAIL_PW")
 
 load_dotenv()
@@ -24,7 +23,7 @@ def send_email(user_name, user_email, user_message):
         try:
             connection.starttls()
             connection.login(SEND_EMAIL, EMAIL_PW)
-            connection.sendmail(SEND_EMAIL, RECEIVE_EMAIL, email)
+            connection.sendmail(SEND_EMAIL, "matthewmarrocelli@outlook.com", email)
         except Exception as e:
             print(e, "Send fail")
 
