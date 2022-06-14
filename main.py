@@ -5,7 +5,8 @@ from flask_bootstrap import Bootstrap
 import smtplib
 from datetime import datetime
 
-MY_EMAIL = os.getenv("MY_EMAIL")
+SEND_EMAIL = os.getenv("SEND_EMAIL")
+RECEIVE_EMAIL = os.getenv("RECEIVE_EMAIL")
 EMAIL_PW = os.getenv("EMAIL_PW")
 
 load_dotenv()
@@ -19,10 +20,13 @@ current_year = datetime.now().year
 def send_email(user_name, user_email, user_message):
     email = f"Subject: CONTACT FROM PERSONAL SITE\n\n" \
             f"Name: {user_name}\nEmail: {user_email}\nMessage: {user_message}"
-    with smtplib.SMTP("smtp.live.com") as connection:
-        connection.starttls()
-        connection.login(MY_EMAIL, EMAIL_PW)
-        connection.sendmail(MY_EMAIL, MY_EMAIL, email)
+    with smtplib.SMTP("smtp-mail.outlook.com") as connection:
+        try:
+            connection.starttls()
+            connection.login(SEND_EMAIL, EMAIL_PW)
+            connection.sendmail(SEND_EMAIL, RECEIVE_EMAIL, email)
+        except Exception as e:
+            print(e, "Send fail")
 
 
 @app.route('/', methods=["GET", "POST"])

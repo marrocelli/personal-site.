@@ -63,7 +63,7 @@
 
                 <div class="container-fluid">
                     {% if sent: %}
-                        <h1 class="main-heading fw-bold">Your message has been fully sent.</h1>
+                        <h1 class="main-heading fw-bold">Your message has been sent.</h1>
                         <p>I'm looking forward to talking with you!</p>
                         <br>
                     {% else: %}
@@ -84,7 +84,8 @@
 
             <!-- Projects -->
             <section id="projects">
-                <h3 class="section-heading">Projects</h3>
+                <h3 class="section-heading">Projects</h3><br>
+                <p>Project code can be found <a href="https://github.com/marrocelli">here</a>.</p>
                 <div class="card project container-fluid w-100">
                     <a href="http://54.245.53.106:5000/">
                         <img src="{{ url_for('static', filename='images/issue-tracker-img.png') }}" class="card-img-top"
