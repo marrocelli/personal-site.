@@ -4,6 +4,7 @@ from flask import Flask, render_template, url_for, request, Response
 from flask_bootstrap import Bootstrap
 import smtplib
 from datetime import datetime
+import requests
 
 SEND_EMAIL = os.getenv("SEND_EMAIL")
 EMAIL_PW = os.getenv("EMAIL_PW")
@@ -19,7 +20,7 @@ current_year = datetime.now().year
 def send_email(user_name, user_email, user_message):
     email = f"Subject: CONTACT FROM PERSONAL SITE\n\n" \
             f"Name: {user_name}\nEmail: {user_email}\nMessage: {user_message}"
-    with smtplib.SMTP("smtp-mail.outlook.com") as connection:
+    with smtplib.SMTP("smtp.mailgun.org") as connection:
         try:
             connection.starttls()
             connection.login(SEND_EMAIL, EMAIL_PW)
